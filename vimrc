@@ -24,6 +24,12 @@ set tabstop=4
 set softtabstop=4
 set smartindent
 
+" Smart split resizing.
+set winheight=30
+set winminheight=5
+set winwidth=104
+set winminwidth=25
+
 set viminfo+=! " make sure vim history works
 " Enable syntax highlighting
 syntax on
