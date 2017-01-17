@@ -108,6 +108,8 @@ Plug 'vimwiki/vimwiki'
 
 Plug 'tpope/vim-abolish'
 
+Plug 'rhysd/vim-clang-format'
+
 call plug#end()
 
 " Plugin options.
