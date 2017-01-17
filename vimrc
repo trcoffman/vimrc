@@ -108,9 +108,6 @@ Plug 'vimwiki/vimwiki'
 
 Plug 'tpope/vim-abolish'
 
-" Thinking of removing this plugin soon if I don't use it much.
-Plug 'wkentaro/conque.vim'
-
 call plug#end()
 
 " Plugin options.
