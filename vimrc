@@ -104,7 +104,14 @@ Plug 'ervandew/supertab'
 
 Plug 'christoomey/vim-tmux-navigator'
 
+Plug 'vimwiki/vimwiki'
+
 " Thinking of removing this plugin soon if I don't use it much.
 Plug 'wkentaro/conque.vim'
 
 call plug#end()
+
+" Plugin options.
+
+" Vimwiki: use markdown by default
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
