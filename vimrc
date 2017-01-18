@@ -110,9 +110,15 @@ Plug 'tpope/vim-abolish'
 
 Plug 'rhysd/vim-clang-format'
 
+Plug 'chamindra/marvim'
+
 call plug#end()
 
 " Plugin options.
 
 " Vimwiki: use markdown by default
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
+" MARVim (Macro Repository for Vim)
+" This line is needed to activate this vimscript
+source ~/.vim/plugged/marvim/marvim.vim
