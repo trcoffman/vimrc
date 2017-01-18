@@ -98,7 +98,7 @@ endif
 "vim-plug
 call plug#begin('~/.vim/plugged')
 
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'derekwyatt/vim-scala'
 
