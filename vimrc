@@ -1,3 +1,5 @@
+" Put 'source <path to this file>' in your ~/.vimrc to use this file.
+
 " Make Vim more useful
 set nocompatible
 " Enhance command-line completion
