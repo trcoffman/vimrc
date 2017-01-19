@@ -114,6 +114,8 @@ Plug 'rhysd/vim-clang-format'
 
 Plug 'chamindra/marvim'
 
+Plug 'leafgarland/typescript-vim'
+
 call plug#end()
 
 " Plugin options.
