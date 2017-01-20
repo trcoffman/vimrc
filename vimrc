@@ -87,6 +87,9 @@ noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
+" Stop highlighting
+noremap <leader>n :nohl<CR>
+
 " Automatic commands
 if has("autocmd")
         " Enable file type detection
