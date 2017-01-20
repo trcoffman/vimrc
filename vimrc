@@ -119,6 +119,8 @@ Plug 'chamindra/marvim'
 
 Plug 'leafgarland/typescript-vim'
 
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 " Plugin options.
