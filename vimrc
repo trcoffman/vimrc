@@ -71,6 +71,8 @@ set showmode
 set title
 " Show the (partial) command as it’s being typed
 set showcmd
+" Enable 256 colors.
+set t_Co=256
 
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
