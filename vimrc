@@ -128,6 +128,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'altercation/vim-colors-solarized'
 
+Plug 'rking/ag.vim'
+
 call plug#end()
 
 " Plugin options.
