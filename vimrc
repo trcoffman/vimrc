@@ -126,6 +126,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'altercation/vim-colors-solarized'
+
 call plug#end()
 
 " Plugin options.
@@ -136,3 +138,7 @@ let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}
 " MARVim (Macro Repository for Vim)
 " This line is needed to activate this vimscript
 source ~/.vim/plugged/marvim/marvim.vim
+
+" Used solarized colorscheme
+set background=dark
+colorscheme solarized
