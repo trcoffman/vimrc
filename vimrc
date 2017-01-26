@@ -130,6 +130,8 @@ Plug 'altercation/vim-colors-solarized'
 
 Plug 'rking/ag.vim'
 
+Plug 'tpope/vim-surround'
+
 call plug#end()
 
 " Plugin options.
