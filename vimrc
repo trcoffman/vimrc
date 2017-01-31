@@ -92,6 +92,9 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " Stop highlighting
 noremap <leader>n :nohl<CR>
 
+" Paste from * register (OS Clipboard)
+noremap <leader>p "*p
+
 " Automatic commands
 if has("autocmd")
         " Enable file type detection
