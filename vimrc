@@ -161,3 +161,6 @@ source ~/.vim/plugged/marvim/marvim.vim
 " Used solarized colorscheme
 set background=dark
 colorscheme solarized
+
+" Use powerline fonts for airline.
+let g:airline_powerline_fonts = 1
