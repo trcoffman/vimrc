@@ -98,6 +98,9 @@ noremap <leader>p "*p
 " Force-write
 noremap <leader>w :w!<CR>
 
+" Insert line below and exit
+noremap <leader>o o
+
 " Automatic commands
 if has("autocmd")
         " Enable file type detection
