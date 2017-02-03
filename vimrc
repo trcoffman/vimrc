@@ -95,6 +95,9 @@ noremap <leader>n :nohl<CR>
 " Paste from * register (OS Clipboard)
 noremap <leader>p "*p
 
+" Force-write
+noremap <leader>w :w!<CR>
+
 " Automatic commands
 if has("autocmd")
         " Enable file type detection
