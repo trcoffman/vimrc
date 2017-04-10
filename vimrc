@@ -141,6 +141,8 @@ Plug 'rking/ag.vim'
 
 Plug 'tpope/vim-surround'
 
+Plug 'VoiceCode/vim-voicecode'
+
 call plug#end()
 
 " Plugin options.
