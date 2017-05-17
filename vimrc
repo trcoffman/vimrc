@@ -77,6 +77,9 @@ set t_Co=256
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
+" Highlight column 100
+set colorcolumn=100
+
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
         let save_cursor = getpos(".")
