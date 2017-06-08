@@ -144,6 +144,8 @@ Plug 'rking/ag.vim'
 
 Plug 'tpope/vim-surround'
 
+Plug 'SirVer/ultisnips'
+
 call plug#end()
 
 " Plugin options.
