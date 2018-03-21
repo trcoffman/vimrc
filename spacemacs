@@ -315,6 +315,7 @@ you should place your code here."
     (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop))
   (add-hook 'text-mode-hook 'my-indent-mode)
   (add-hook 'java-mode-hook 'my-indent-mode)
+  (add-hook 'javascript-mode-hook 'my-indent-mode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
