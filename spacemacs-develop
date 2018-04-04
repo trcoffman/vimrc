@@ -445,16 +445,14 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (defun trcoffman/underscore-is-word ()
     (modify-syntax-entry ?_ "w"))
-  (defun my-indent-mode ()
+  (defun trcoffman/my-indent-mode ()
     (dtrt-indent-mode)
     (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop))
-  (add-hook 'text-mode-hook 'my-indent-mode)
-  (add-hook 'java-mode-hook 'my-indent-mode)
-  (add-hook 'javascript-mode-hook 'my-indent-mode)
-  (add-hook 'c++-mode-hook 'my-indent-mode)
-  (add-hook 'c-mode-hook 'my-indent-mode)
-  (add-hook 'groovy-mode-hook 'my-indent-mode)
-  (add-hook 'groovy-mode-hook 'trcoffman/underscore-is-word)
+  (defun trcoffman/standard-hook ()
+    (trcoffman/underscore-is-word)
+    (trcoffman/my-indent-mode))
+  (dolist (hook '(text-mode-hook java-mode-hook javascript-mode-hook c++-mode-hook c-mode-hook groovy-mode-hook))
+    (add-hook hook 'trcoffman/standard-hook))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
