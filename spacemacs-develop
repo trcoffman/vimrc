@@ -458,6 +458,9 @@ before packages are loaded."
     (trcoffman/my-indent-mode))
   (dolist (hook '(text-mode-hook java-mode-hook javascript-mode-hook c++-mode-hook c-mode-hook groovy-mode-hook))
     (add-hook hook 'trcoffman/standard-hook))
+  ;; Segregate system clipboard from emacs registers, similarly to how Vim works.
+  (setq save-interprogram-paste-before-kill t)
+  (setq x-select-enable-clipboard nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
