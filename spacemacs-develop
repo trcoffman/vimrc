@@ -33,10 +33,14 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(python
+   '(typescript
+     python
      javascript
+     semantic
      (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-format-on-save t
+            c-default-style "my-cc-mode")
      confluence
      windows-scripts
      csv
@@ -457,7 +461,7 @@ before packages are loaded."
   (defun trcoffman/standard-hook ()
     (trcoffman/underscore-is-word)
     (trcoffman/my-indent-mode))
-  (dolist (hook '(text-mode-hook java-mode-hook javascript-mode-hook c++-mode-hook c-mode-hook groovy-mode-hook))
+  (dolist (hook '(text-mode-hook java-mode-hook javascript-mode-hook c-mode-common-hook groovy-mode-hook))
     (add-hook hook 'trcoffman/standard-hook))
   ;; Segregate system clipboard from emacs registers, similarly to how Vim works.
   (setq save-interprogram-paste-before-kill t)
@@ -466,6 +470,23 @@ before packages are loaded."
 
   ;; Line numbers on for groovy layer
   (add-hook 'groovy-mode-hook 'spacemacs/toggle-line-numbers-on)
+
+  ;; Customize C++ indentation style
+  (defconst my-cc-style
+    '("cc-mode"
+      (c-offsets-alist . ((innamespace . [0])
+                          (arglist-intro . ++)
+                          (arglist-cont . 0)
+                          (arglist-cont-nonempty . ++)
+                          (arglist-close . ++)
+                          (statement-cont . ++)
+                          ))))
+
+  (add-hook 'c++-mode-hook (c-add-style "my-cc-mode" my-cc-style))
+
+  ;; Disable auto-indentation on paste
+  (add-to-list 'spacemacs-indent-sensitive-modes 'c++-mode)
+  (add-to-list 'spacemacs-indent-sensitive-modes 'java-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -482,7 +503,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (restart-emacs persp-mode org-projectile org-category-capture org-mime helm-make groovy-mode git-timemachine git-link evil-mc evil-iedit-state evil-goggles dumb-jump ace-window counsel swiper ivy smartparens highlight projectile window-purpose imenu-list rtags helm helm-core avy markdown-mode magit git-commit ghub js2-mode yasnippet which-key org-plus-contrib yasnippet-snippets yapfify xterm-color ws-butler with-editor winum web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org symon string-inflection spaceline-all-the-icons smeargle shell-pop rainbow-delimiters pyvenv pytest pyenv-mode py-isort powershell popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer orgit org-present org-pomodoro org-download org-bullets org-brain open-junk-file neotree nameless multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint json-navigator json-mode js2-refactor js-doc indent-guide importmagic iedit hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag groovy-imports google-translate google-c-style golden-ratio gnuplot gitconfig-mode gitattributes-mode git-messenger gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dtrt-indent disaster diminish define-word cython-mode csv-mode counsel-projectile confluence company-tern company-statistics company-rtags company-c-headers company-anaconda column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
+    (web-mode tide typescript-mode lsp-mode flycheck add-node-modules-path yasnippet-snippets toc-org pyvenv powershell pippel pipenv org-download org-brain neotree mmm-mode hl-todo highlight-parentheses helm-projectile gitignore-templates git-link expand-region evil-magit evil-goggles evil-escape editorconfig dumb-jump dtrt-indent define-word counsel-projectile counsel swiper ivy company-anaconda anaconda-mode aggressive-indent smartparens company rtags helm helm-core yasnippet multiple-cursors avy skewer-mode js2-mode markdown-mode projectile magit magit-popup ghub with-editor pythonic spaceline memoize which-key use-package dotenv-mode org-plus-contrib hydra yapfify xterm-color ws-butler winum web-beautify volatile-highlights vi-tilde-fringe uuidgen symon string-inflection stickyfunc-enhance srefactor spaceline-all-the-icons smeargle simple-httpd shell-pop restart-emacs rainbow-delimiters pytest pyenv-mode py-isort powerline popwin pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-bullets open-junk-file nameless multi-term move-text markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint json-navigator json-mode js2-refactor js-doc indent-guide importmagic hungry-delete htmlize highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag groovy-mode groovy-imports google-translate google-c-style golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-commit gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav disaster diminish cython-mode csv-mode confluence company-tern company-statistics company-rtags company-c-headers column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode bind-key auto-yasnippet auto-highlight-symbol auto-compile async ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
