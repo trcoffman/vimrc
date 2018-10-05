@@ -40,6 +40,8 @@ This function should only modify configuration layer settings."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-format-on-save t
+            c-c++-enable-rtags-support t
+            rtags-path "/Users/tylerco/github/rtags/bin"
             c-default-style "my-cc-mode")
      confluence
      windows-scripts
