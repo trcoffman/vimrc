@@ -33,7 +33,12 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(graphviz
+   '(
+     ruby
+     yaml
+     terraform
+     react
+     graphviz
      html
      rust
      themes-megapack
@@ -470,8 +475,37 @@ before packages are loaded."
   (defun trcoffman/standard-hook ()
     (trcoffman/underscore-is-word)
     (trcoffman/my-indent-mode))
-  (dolist (hook '(text-mode-hook java-mode-hook javascript-mode-hook c-mode-common-hook groovy-mode-hook))
+  (dolist (hook '(
+                  text-mode-hook
+                  java-mode-hook
+                  js2-mode-hook
+                  javascript-mode-hook
+                  c-mode-common-hook
+                  groovy-mode-hook
+                  typescript-mode-hook
+                  typescript-tsx-mode-hook
+                  web-mode-hook)
+                )
     (add-hook hook 'trcoffman/standard-hook))
+
+  ;; Configure web-mode indentation
+  (defun trcoffman/web-mode-hook ()
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil)))
+  (add-hook 'web-mode-hook 'trcoffman/web-mode-hook)
+
+  ;; (defun trcoffman/js-hook ()
+  ;;   (dtrt-indent-mode))
+  ;; (dolist (hook '(js2-mode-hook javascript-mode-hook))
+  ;;   (add-hook hook 'trcoffman/js-hook))
+
+  ;; (setq-default typescript-indent-level 2)
+  ;; (setq tide-format-options '(:indentSize 2 :tabSize 2))
+
   ;; Segregate system clipboard from emacs registers, similarly to how Vim works.
   (setq save-interprogram-paste-before-kill t)
   (setq x-select-enable-clipboard nil)
@@ -493,7 +527,7 @@ before packages are loaded."
 
   (add-hook 'c++-mode-hook (c-add-style "my-cc-mode" my-cc-style))
 
-  ;; Disable auto-indentation on paste
+  ;; Disable auto-indentation on paste in Java-mode
   (add-to-list 'spacemacs-indent-sensitive-modes 'java-mode)
 
   ;; Add node to exec-path
@@ -501,8 +535,10 @@ before packages are loaded."
 
   ;; Configure org-mode
   (setq org-plantuml-jar-path
-        (expand-file-name "/usr/local/Cellar/plantuml/1.2018.10/libexec/plantuml.jar"))
+        (expand-file-name "/usr/local/Cellar/plantuml/1.2020.5/libexec/plantuml.jar"))
   (setq org-src-tab-acts-natively t)
+  ;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
   (setq org-agenda-files (list
                           "~/org/DailyTodos.org"
