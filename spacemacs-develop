@@ -553,13 +553,11 @@ before packages are loaded."
   (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
   (setq org-agenda-files (list
-                          "~/org/DailyTodos.org"
                           "~/Dropbox/org/life_stuff.org"
-                          "~/OneDrive - LogMeIn Inc/org/BuildforgeMigration.org"
-                          "~/OneDrive - LogMeIn Inc/org/lmi_tasks.org"
-                          "~/OneDrive - LogMeIn Inc/org/hackweek.org"
-                               ))
-  )
+                          "~/Dropbox/org/body_regimen.org"
+                          ))
+
+  ) ;; dotspacemacs/user-config
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
