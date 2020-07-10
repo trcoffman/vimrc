@@ -530,7 +530,15 @@ before packages are loaded."
   (add-hook 'c++-mode-hook (c-add-style "my-cc-mode" my-cc-style))
 
   ;; Disable auto-indentation on paste in Java-mode
-  (add-to-list 'spacemacs-indent-sensitive-modes 'java-mode)
+  (add-to-list 'spacemacs-indent-sensitive-modes 'java-mode 'ruby-mode)
+  (add-to-list 'spacemacs-indent-sensitive-modes 'ruby-mode)
+
+  ;; (defun trcoffman/ruby-mode-hook ()
+  ;;   (setq ruby-use-smie nil)
+  ;;   )
+  ;; (add-hook 'ruby-mode-hook 'trcoffman/ruby-mode-hook)
+  ;; (add-hook 'ruby-mode-hook (lambda () (setq-local indent-line-function 'ruby-indent-line)))
+
 
   ;; Add node to exec-path
   (setq exec-path (append exec-path '("/Users/tylerco/.nvm/versions/node/v8.6.0/bin/")))
