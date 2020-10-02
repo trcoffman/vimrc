@@ -34,6 +34,7 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     syntax-checking
      fzf
      ruby
      yaml
@@ -45,9 +46,12 @@ This function should only modify configuration layer settings."
      themes-megapack
      perl5
      plantuml
-     typescript
+     (typescript :variables
+                 ;; tide-tsserver-executable "/Users/tyler.coffman/src/apm-mobile/packages/apm-mobile/node_modules/typescript/bin/tsserver"
+                 typescript-linter 'eslint
+                 )
      python
-     javascript
+     (javascript :variables node-add-modules-path t)
      semantic
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -64,9 +68,7 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     (auto-completion :variables
-                      spacemacs-default-company-backends '(company-tabnine)
-      )
+     auto-completion
      ;; better-defaults
      emacs-lisp
      git
@@ -89,7 +91,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(company-tabnine dtrt-indent libgit)
+   dotspacemacs-additional-packages '(dtrt-indent libgit nvm prettier-js)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -471,10 +473,10 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq projectile-enable-caching t)
 
-  ;; Trigger completion immediately.
-  (setq company-idle-delay 0)
   ;; Number the candidates (use M-1, M-2 etc to select completions).
   (setq company-show-numbers t)
+
+  (nvm-use "v10.16.3")
 
   (spacemacs/toggle-highlight-current-line-globally-off)
   (defun trcoffman/underscore-is-word ()
@@ -497,6 +499,16 @@ before packages are loaded."
                   web-mode-hook)
                 )
     (add-hook hook 'trcoffman/standard-hook))
+
+  (dolist (hook '(
+                  javascript-mode-hook
+                  js2-mode-hook
+                  typescript-mode-hook
+                  typescript-tsx-mode-hook
+                  web-mode-hook
+                  )
+                )
+    (add-hook hook 'prettier-js-mode))
 
   ;; Configure web-mode indentation
   (defun trcoffman/web-mode-hook ()
