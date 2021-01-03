@@ -146,6 +146,8 @@ Plug 'tpope/vim-surround'
 
 Plug 'SirVer/ultisnips'
 
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 " Plugin options.
@@ -165,7 +167,8 @@ let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}
 
 " MARVim (Macro Repository for Vim)
 " This line is needed to activate this vimscript
-source ~/.vim/plugged/marvim/marvim.vim
+source ~/.vim/plugged/marvim/plugin/marvim.vim
+
 
 " Used solarized colorscheme
 set background=dark

@@ -33,16 +33,26 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(latex
+   '(
+     latex
+     syntax-checking
+     fzf
+     ruby
+     yaml
+     terraform
+     react
      graphviz
      html
      rust
      themes-megapack
      perl5
      plantuml
-     typescript
+     (typescript :variables
+                 ;; tide-tsserver-executable "/Users/tyler.coffman/src/apm-mobile/packages/apm-mobile/node_modules/typescript/bin/tsserver"
+                 typescript-linter 'eslint
+                 )
      python
-     javascript
+     (javascript :variables node-add-modules-path t)
      semantic
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -82,7 +92,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(dtrt-indent)
+   dotspacemacs-additional-packages '(dtrt-indent libgit nvm prettier-js)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -462,6 +472,13 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (setq projectile-enable-caching t)
+
+  ;; Number the candidates (use M-1, M-2 etc to select completions).
+  (setq company-show-numbers t)
+
+  (nvm-use "v10.16.3")
+
   (spacemacs/toggle-highlight-current-line-globally-off)
   (defun trcoffman/underscore-is-word ()
     (modify-syntax-entry ?_ "w"))
@@ -471,8 +488,49 @@ before packages are loaded."
   (defun trcoffman/standard-hook ()
     (trcoffman/underscore-is-word)
     (trcoffman/my-indent-mode))
-  (dolist (hook '(text-mode-hook java-mode-hook javascript-mode-hook c-mode-common-hook groovy-mode-hook))
+  (dolist (hook '(
+                  text-mode-hook
+                  java-mode-hook
+                  js2-mode-hook
+                  javascript-mode-hook
+                  c-mode-common-hook
+                  groovy-mode-hook
+                  typescript-mode-hook
+                  typescript-tsx-mode-hook
+                  web-mode-hook)
+                )
     (add-hook hook 'trcoffman/standard-hook))
+
+  (dolist (hook '(
+                  javascript-mode-hook
+                  js2-mode-hook
+                  typescript-mode-hook
+                  typescript-tsx-mode-hook
+                  web-mode-hook
+                  )
+                )
+    (add-hook hook 'prettier-js-mode))
+
+  ;; Configure web-mode indentation
+  (defun trcoffman/web-mode-hook ()
+    (setq web-mode-content-types-alist
+          '(("jsx" . "\\.js[x]?\\'")))
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil)))
+  (add-hook 'web-mode-hook 'trcoffman/web-mode-hook)
+
+  ;; (defun trcoffman/js-hook ()
+  ;;   (dtrt-indent-mode))
+  ;; (dolist (hook '(js2-mode-hook javascript-mode-hook))
+  ;;   (add-hook hook 'trcoffman/js-hook))
+
+  ;; (setq-default typescript-indent-level 2)
+  ;; (setq tide-format-options '(:indentSize 2 :tabSize 2))
+
   ;; Segregate system clipboard from emacs registers, similarly to how Vim works.
   (setq save-interprogram-paste-before-kill t)
   (setq x-select-enable-clipboard nil)
@@ -494,25 +552,33 @@ before packages are loaded."
 
   (add-hook 'c++-mode-hook (c-add-style "my-cc-mode" my-cc-style))
 
-  ;; Disable auto-indentation on paste
-  (add-to-list 'spacemacs-indent-sensitive-modes 'java-mode)
+  ;; Disable auto-indentation on paste in Java-mode
+  (add-to-list 'spacemacs-indent-sensitive-modes 'java-mode 'ruby-mode)
+  (add-to-list 'spacemacs-indent-sensitive-modes 'ruby-mode)
+
+  ;; (defun trcoffman/ruby-mode-hook ()
+  ;;   (setq ruby-use-smie nil)
+  ;;   )
+  ;; (add-hook 'ruby-mode-hook 'trcoffman/ruby-mode-hook)
+  ;; (add-hook 'ruby-mode-hook (lambda () (setq-local indent-line-function 'ruby-indent-line)))
+
 
   ;; Add node to exec-path
   (setq exec-path (append exec-path '("/Users/tylerco/.nvm/versions/node/v8.6.0/bin/")))
 
   ;; Configure org-mode
   (setq org-plantuml-jar-path
-        (expand-file-name "/usr/local/Cellar/plantuml/1.2018.10/libexec/plantuml.jar"))
+        (expand-file-name "/usr/local/Cellar/plantuml/1.2020.5/libexec/plantuml.jar"))
   (setq org-src-tab-acts-natively t)
+  ;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
   (setq org-agenda-files (list
-                          "~/org/DailyTodos.org"
                           "~/Dropbox/org/life_stuff.org"
-                          "~/OneDrive - LogMeIn Inc/org/BuildforgeMigration.org"
-                          "~/OneDrive - LogMeIn Inc/org/lmi_tasks.org"
-                          "~/OneDrive - LogMeIn Inc/org/hackweek.org"
-                               ))
-  )
+                          "~/Dropbox/org/body_regimen.org"
+                          ))
+
+  ) ;; dotspacemacs/user-config
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
