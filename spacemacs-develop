@@ -472,6 +472,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq projectile-enable-caching t)
+  (setq package-native-compile t)
 
   (exec-path-from-shell-initialize)
 
