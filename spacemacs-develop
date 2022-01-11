@@ -510,6 +510,9 @@ before packages are loaded."
                 )
     (add-hook hook 'prettier-js-mode))
 
+  (defun clozeed/org-mode-hook ()
+    (evil-define-key '(normal motion) 'org-mode-map (kbd "g j") nil))
+  (add-hook 'org-mode-hook 'clozeed/org-mode-hook)
   ;; Configure web-mode indentation
   (defun trcoffman/web-mode-hook ()
     (setq web-mode-content-types-alist
