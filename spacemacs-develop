@@ -476,8 +476,6 @@ before packages are loaded."
   ;; Number the candidates (use M-1, M-2 etc to select completions).
   (setq company-show-numbers t)
 
-  (nvm-use "v10.16.3")
-
   (spacemacs/toggle-highlight-current-line-globally-off)
   (defun trcoffman/underscore-is-word ()
     (modify-syntax-entry ?_ "w"))
