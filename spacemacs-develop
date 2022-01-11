@@ -50,7 +50,7 @@ This function should only modify configuration layer settings."
      themes-megapack
      plantuml
      (typescript :variables
-                 ;; tide-tsserver-executable "/Users/tyler.coffman/src/apm-mobile/packages/apm-mobile/node_modules/typescript/bin/tsserver"
+                 tide-tsserver-executable "/Users/tyler.coffman/src/apm-mobile/packages/apm-mobile/node_modules/typescript/bin/tsserver"
                  typescript-linter 'eslint
                  )
      python
