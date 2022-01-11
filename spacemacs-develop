@@ -565,9 +565,6 @@ before packages are loaded."
   ;; (add-hook 'ruby-mode-hook (lambda () (setq-local indent-line-function 'ruby-indent-line)))
 
 
-  ;; Add node to exec-path
-  (setq exec-path (append exec-path '("/Users/tylerco/.nvm/versions/node/v8.6.0/bin/")))
-
   ;; Configure org-mode
   (setq org-plantuml-jar-path
         (expand-file-name "/usr/local/Cellar/plantuml/1.2020.5/libexec/plantuml.jar"))
