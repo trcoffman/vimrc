@@ -37,6 +37,7 @@ This function should only modify configuration layer settings."
      finance
      groovy
      bm
+     kotlin
      syntax-checking
      fzf
      ruby
