@@ -148,6 +148,8 @@ Plug 'SirVer/ultisnips'
 
 Plug 'junegunn/fzf.vim'
 
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
 call plug#end()
 
 " Plugin options.
