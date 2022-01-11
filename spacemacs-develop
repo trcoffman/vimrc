@@ -36,6 +36,7 @@ This function should only modify configuration layer settings."
    '(
      finance
      groovy
+     bm
      syntax-checking
      fzf
      ruby
