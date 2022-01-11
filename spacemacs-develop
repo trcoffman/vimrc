@@ -578,6 +578,7 @@ before packages are loaded."
   (setq org-agenda-files (list
                           "~/Dropbox/org/life_stuff.org"
                           "~/Dropbox/org/body_regimen.org"
+                          "~/org/appfolio_todo.org"
                           ))
 
   ) ;; dotspacemacs/user-config
