@@ -48,7 +48,6 @@ This function should only modify configuration layer settings."
      html
      rust
      themes-megapack
-     perl5
      plantuml
      (typescript :variables
                  ;; tide-tsserver-executable "/Users/tyler.coffman/src/apm-mobile/packages/apm-mobile/node_modules/typescript/bin/tsserver"
