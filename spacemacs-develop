@@ -38,6 +38,7 @@ This function should only modify configuration layer settings."
      groovy
      bm
      kotlin
+     latex
      syntax-checking
      fzf
      ruby
