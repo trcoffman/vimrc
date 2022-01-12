@@ -91,7 +91,11 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(dtrt-indent libgit prettier-js anki-editor exec-path-from-shell (helm-fzf :location "~/github/helm-fzf/helm-fzf.el"))
+   dotspacemacs-additional-packages '(dtrt-indent
+                                      libgit
+                                      prettier-js
+                                      anki-editor
+                                      (helm-fzf :location "~/github/helm-fzf/helm-fzf.el"))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -476,8 +480,6 @@ before packages are loaded."
 
   (setq projectile-enable-caching t)
   (setq package-native-compile t)
-
-  (exec-path-from-shell-initialize)
 
   ;; Number the candidates (use M-1, M-2 etc to select completions).
   (setq company-show-numbers t)
