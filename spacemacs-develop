@@ -49,12 +49,12 @@ This function should only modify configuration layer settings."
      rust
      themes-megapack
      plantuml
+     (tide :variables tide-tsserver-executable nil)
+     (javascript :variables node-add-modules-path t)
      (typescript :variables
-                 tide-tsserver-executable "/Users/tyler.coffman/src/apm-mobile/packages/apm-mobile/node_modules/typescript/bin/tsserver"
                  typescript-linter 'eslint
                  )
      python
-     (javascript :variables node-add-modules-path t)
      semantic
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
