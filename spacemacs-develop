@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp -*- "/usr/local/Cellar/plantuml/1.2022.1/libexec/plantuml.jar"
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -49,7 +49,7 @@ This function should only modify configuration layer settings."
      html
      rust
      themes-megapack
-     plantuml
+     (plantuml :variables plantuml-jar-path  "/usr/local/Cellar/plantuml/1.2022.1/libexec/plantuml.jar")
      (tide :variables tide-tsserver-executable nil)
      (javascript :variables node-add-modules-path t)
      (typescript :variables
@@ -478,6 +478,9 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  ;; Save recent files list every 5 mins
+  (run-at-time nil (* 5 60) 'recentf-save-list)
+
   (setq auto-mode-alist (delete '("/git-rebase-todo$" . helm-ls-git-rebase-todo-mode) auto-mode-alist))
   (add-to-list 'auto-mode-alist '("\\.m\\'" . objc-mode))
 
@@ -576,12 +579,13 @@ before packages are loaded."
 
   ;; Configure org-mode
   (setq org-plantuml-jar-path
-        (expand-file-name "/usr/local/Cellar/plantuml/1.2020.5/libexec/plantuml.jar"))
+        (expand-file-name "/usr/local/Cellar/plantuml/1.2022.1/libexec/plantuml.jar"))
   (setq org-src-tab-acts-natively t)
   ;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
   (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
   (setq org-agenda-files (list
+                          "~/Dropbox/org/agenda.org"
                           "~/Dropbox/org/life_stuff.org"
                           "~/Dropbox/org/body_regimen.org"
                           "~/org/appfolio_todo.org"

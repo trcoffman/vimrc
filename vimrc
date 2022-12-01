@@ -133,8 +133,6 @@ Plug 'chamindra/marvim'
 
 Plug 'leafgarland/typescript-vim'
 
-Plug 'tpope/vim-fugitive'
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
