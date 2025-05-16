@@ -117,36 +117,22 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 
-Plug 'derekwyatt/vim-scala'
-
 Plug 'ervandew/supertab'
-
-Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'vimwiki/vimwiki'
 
 Plug 'tpope/vim-abolish'
 
-Plug 'rhysd/vim-clang-format'
-
 Plug 'chamindra/marvim'
-
-Plug 'leafgarland/typescript-vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'altercation/vim-colors-solarized'
 
-Plug 'rking/ag.vim'
-
 Plug 'tpope/vim-surround'
 
-Plug 'SirVer/ultisnips'
-
 Plug 'junegunn/fzf.vim'
-
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
 
@@ -176,4 +162,4 @@ let g:solarized_contrast = "high"
 colorscheme solarized
 
 " Use powerline fonts for airline.
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
